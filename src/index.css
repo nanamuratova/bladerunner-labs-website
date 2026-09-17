@@ -108,44 +108,30 @@ body {
 
 /* Hero — floating bubbles. Colors live in tokens.css as the hero treatment. */
 .hero-bg { background: var(--hero-gradient); }
-/* Grain sits above the gradient and the bubbles, below the content. */
-.hero-bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: var(--grain-texture);
-  background-size: 180px 180px;
-  opacity: var(--grain-opacity);
-  mix-blend-mode: overlay;
-  pointer-events: none;
-  z-index: 1;
-}
 .bubble {
   position: absolute;
   border-radius: var(--radius-999999);
   background-image: var(--bubble-fill);
+  box-shadow: var(--bubble-shadow);
   filter: blur(var(--bubble-blur));
   will-change: transform;
 }
-/* Iridescent film, masked so it fades out with the shape. */
-.bubble--violet { background-image: var(--bubble-fill-violet); }
-.bubble--edge {
-  background-image: var(--bubble-fill-edge);
-  filter: blur(var(--bubble-blur-edge));
-}
-.bubble--blush { background-image: var(--bubble-fill-blush); }
-.bubble::before {
+/* Iridescent film over the bubble, then the specular highlight on top. */
+.bubble::before,
+.bubble::after {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
+}
+.bubble::before {
   background-image: var(--bubble-sheen);
   mix-blend-mode: overlay;
-  opacity: 0.7;
-  mask-image: var(--bubble-sheen-mask);
-  -webkit-mask-image: var(--bubble-sheen-mask);
+  opacity: 0.75;
 }
-
+.bubble::after {
+  background-image: var(--bubble-highlight);
+}
 @keyframes floatA {
   0%, 100% { transform: translate(0, 0) rotate(0deg); }
   50% { transform: translate(14px, -28px) rotate(8deg); }

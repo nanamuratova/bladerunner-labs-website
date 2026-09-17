@@ -77,14 +77,11 @@ buttons an accessible name. Do not rely on hover to expose essential content.
 
 ## Decorative treatments
 
-The hero uses a blue mesh gradient (`--hero-gradient`) with large soft shapes drifting over it
-and a film of grain on top (`--grain-texture`, `--grain-opacity`). Each shape is a flat gradient
-field that fades out at its edge — `--bubble-fill` and its `-violet` and `-blush` variants —
-with an iridescent conic sheen (`--bubble-sheen`) blended using `overlay` and masked by
-`--bubble-sheen-mask` so no disc edge shows. One shape uses `--bubble-fill-edge` and keeps a
-defined horizon, the way a sphere edge reads in the reference art. `--bubble-blur` softens the
-soft shapes; `--bubble-blur-edge` leaves the defined one crisp. Shape size and position live in
-the page markup, not the tokens, and scale down below 640px. Service icons sit on a 10% accent tint (`--accent-subtle`). These are decorative
+The hero uses a blue mesh gradient and large floating bubbles with a holographic finish
+(`--hero-gradient`, `--bubble-fill`, `--bubble-sheen`, `--bubble-highlight`, `--bubble-blur`,
+`--bubble-shadow`). The mesh's two strongest layers are the accent at 28% and 34%, over
+hero-only light blues. Each bubble is a soft fill, an iridescent conic sheen blended with
+`overlay`, a specular highlight, and a 7px blur; bubbles scale down below 640px. Service icons sit on a 10% accent tint (`--accent-subtle`). These are decorative
 only: they are not part of the gray palette and must not be used for text, surfaces, borders
 or controls, where contrast is not guaranteed.
 
