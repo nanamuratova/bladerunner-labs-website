@@ -27,8 +27,8 @@ type LogoProps = {
 }
 
 const defaultHeight: Record<Variant, string> = {
-  lockup: 'h-5',
-  wordmark: 'h-5',
+  lockup: 'h-4',
+  wordmark: 'h-4',
   mark: 'h-6',
   stacked: 'h-10',
 }
