@@ -105,7 +105,7 @@ function Header() {
                 key={item.href}
                 href={item.href}
                 aria-current={current ? 'location' : undefined}
-                className={`brl-body-sm font-medium transition-colors ${
+                className={`brl-mono-label transition-colors ${
                   current ? 'text-accent' : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
@@ -140,7 +140,7 @@ function Header() {
                   href={item.href}
                   aria-current={current ? 'location' : undefined}
                   onClick={() => setOpen(false)}
-                  className={`brl-body flex min-h-12 items-center font-medium ${
+                  className={`brl-mono-label flex min-h-12 items-center ${
                     current ? 'text-accent' : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
@@ -420,12 +420,12 @@ function Contact() {
                   {row.href ? (
                     <a
                       href={row.href}
-                      className="brl-h6 mt-3 block text-gray-900 transition-colors hover:text-accent"
+                      className="brl-body-lg mt-3 block text-gray-900 transition-colors hover:text-accent"
                     >
                       {row.value}
                     </a>
                   ) : (
-                    <span className="brl-h6 mt-3 block text-gray-900">{row.value}</span>
+                    <span className="brl-body-lg mt-3 block text-gray-900">{row.value}</span>
                   )}
                 </div>
               ))}
@@ -437,7 +437,7 @@ function Contact() {
                 <span className="brl-mono-label text-gray-500">Careers</span>
                 <a
                   href="mailto:jobs@bladerunner.io"
-                  className="brl-h6 mt-3 block text-gray-900 transition-colors hover:text-accent"
+                  className="brl-body-lg mt-3 block text-gray-900 transition-colors hover:text-accent"
                 >
                   jobs@bladerunner.io
                 </a>
@@ -453,7 +453,7 @@ function Contact() {
                       rel="noreferrer"
                       className="group flex items-center gap-2 text-gray-900 transition-colors hover:text-accent"
                     >
-                      <span className="brl-h6">{s.name}</span>
+                      <span className="brl-body-lg">{s.name}</span>
                       <svg
                         width="16"
                         height="16"
