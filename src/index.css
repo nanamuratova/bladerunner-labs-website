@@ -1,0 +1,148 @@
+/* The design system is the visual source of truth. tokens.css and components.css hold
+   the v0.2 values taken from the Figma design; everything below maps Tailwind onto those
+   tokens. Add new values to the design system, not here — no raw hex, font stacks,
+   letter-spacing or off-scale sizes in this file. */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+@import './design-system/fonts/fonts.css';
+@import './design-system/tokens.css';
+@import './design-system/components.css';
+@import 'tailwindcss';
+
+@theme {
+  /* Drop Tailwind's defaults so only design-system values are reachable. */
+  --color-*: initial;
+  --font-*: initial;
+  --radius-*: initial;
+
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-button);
+
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --color-white: var(--gray-0);
+  --color-gray-0: var(--gray-0);
+  --color-gray-50: var(--gray-50);
+  --color-gray-100: var(--gray-100);
+  --color-gray-200: var(--gray-200);
+  --color-gray-300: var(--gray-300);
+  --color-gray-400: var(--gray-400);
+  --color-gray-500: var(--gray-500);
+  --color-gray-600: var(--gray-600);
+  --color-gray-700: var(--gray-700);
+  --color-gray-800: var(--gray-800);
+  --color-gray-900: var(--gray-900);
+  --color-gray-950: var(--gray-950);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-pressed: var(--accent-pressed);
+  --color-accent-on-dark: var(--accent-on-dark);
+  --color-accent-subtle: var(--accent-subtle); /* 10% accent tint behind service icons */
+
+  /* Semantic roles — these follow data-theme="dark" automatically. */
+  --color-surface: var(--surface);
+  --color-surface-subtle: var(--surface-subtle);
+  --color-surface-muted: var(--surface-muted);
+  --color-surface-inverse: var(--surface-inverse);
+  --color-text: var(--text);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-inverse: var(--text-inverse);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-link: var(--link);
+
+  /* Radii come from the token scale: rounded-[var(--radius-16)] and friends. */
+  --radius-none: 0;
+  --radius-full: var(--radius-999999);
+}
+
+/* Theme values in @theme resolve once at :root, so a section marked
+   data-theme="dark" would keep the light values. Re-point the semantic roles
+   wherever the theme is set, and Tailwind's bg-surface / text-text / border-border
+   follow the flip. */
+[data-theme] {
+  --color-surface: var(--surface);
+  --color-surface-subtle: var(--surface-subtle);
+  --color-surface-muted: var(--surface-muted);
+  --color-surface-inverse: var(--surface-inverse);
+  --color-text: var(--text);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-inverse: var(--text-inverse);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-link: var(--link);
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scroll-padding-top: var(--space-80);
+}
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-line);
+  color: var(--text);
+  background: var(--surface);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--gray-0);
+}
+
+/* Scrollbars hidden until scroll, per the Figma design. */
+* { scrollbar-width: none; }
+*::-webkit-scrollbar { width: 0; height: 0; }
+
+/* Hero — floating bubbles. Colors live in tokens.css as the hero treatment. */
+.hero-bg { background: var(--hero-gradient); }
+.bubble {
+  position: absolute;
+  border-radius: var(--radius-999999);
+  background: var(--bubble-fill);
+  box-shadow: var(--bubble-shadow);
+  will-change: transform;
+}
+@keyframes floatA {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(14px, -28px) rotate(8deg); }
+}
+@keyframes floatB {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-20px, 22px); }
+}
+@keyframes floatC {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(18px, 16px); }
+  66% { transform: translate(-12px, -18px); }
+}
+.animate-floatA { animation: floatA 13s ease-in-out infinite; }
+.animate-floatB { animation: floatB 17s ease-in-out infinite; }
+.animate-floatC { animation: floatC 21s ease-in-out infinite; }
+
+/* Logo marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 42s linear infinite; }
+.marquee-track:hover .animate-marquee { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-floatA,
+  .animate-floatB,
+  .animate-floatC,
+  .animate-marquee { animation: none; }
+}

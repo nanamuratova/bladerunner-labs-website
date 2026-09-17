@@ -1,0 +1,92 @@
+/* Reusable BladeRunner components — v0.2. Import tokens.css first.
+   Button spec matches the Figma design: uppercase IBM Plex Mono with 0.06em tracking,
+   40/48/56px heights, 24px radius (32px at large), ghost and link text-only. */
+
+.brl-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  height: var(--button-height-md);
+  padding: 0 var(--button-padding-md);
+  border: 1px solid transparent;
+  border-radius: var(--button-radius);
+  font-family: var(--font-button);
+  font-size: var(--type-button-size);
+  line-height: var(--type-button-line);
+  font-weight: var(--type-button-weight);
+  letter-spacing: var(--type-button-tracking);
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 150ms, color 150ms, border-color 150ms;
+  background: var(--accent);
+  color: var(--gray-0);
+}
+.brl-button:hover, .brl-button[data-state="hover"] { background: var(--accent-hover) }
+.brl-button:active, .brl-button[data-state="pressed"] { background: var(--accent-pressed) }
+.brl-button:focus-visible, .brl-button[data-state="focus"] { outline: 2px solid var(--focus); outline-offset: 2px }
+
+/* Sizes */
+.brl-button--sm { height: var(--button-height-sm); padding: 0 var(--button-padding-sm); font-size: var(--type-button-sm-size) }
+.brl-button--lg { height: var(--button-height-lg); padding: 0 var(--button-padding-lg); font-size: var(--type-button-lg-size); border-radius: var(--button-radius-lg) }
+
+/* Variants */
+.brl-button--secondary { background: transparent; color: var(--gray-900); border-color: var(--gray-300) }
+.brl-button--secondary:hover, .brl-button--secondary[data-state="hover"] { border-color: var(--gray-900); background: var(--gray-100) }
+.brl-button--secondary:active, .brl-button--secondary[data-state="pressed"] { background: var(--gray-200) }
+
+.brl-button--tertiary { background: var(--gray-100); color: var(--gray-900) }
+.brl-button--tertiary:hover, .brl-button--tertiary[data-state="hover"] { background: var(--gray-200) }
+.brl-button--tertiary:active, .brl-button--tertiary[data-state="pressed"] { background: var(--gray-300) }
+
+/* Ghost and link: text-sized, zero padding, zero radius, no border, no min-height. */
+.brl-button.brl-button--ghost, .brl-button.brl-button--link {
+  background: transparent;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  height: auto;
+  min-height: 0;
+}
+.brl-button--ghost { color: var(--gray-900) }
+.brl-button--ghost:hover, .brl-button--ghost[data-state="hover"] { color: var(--accent) }
+.brl-button--link { color: var(--accent); text-decoration: underline; text-underline-offset: 4px }
+.brl-button--link:hover, .brl-button--link[data-state="hover"] { color: var(--accent-hover) }
+
+/* On a dark surface */
+.brl-button--on-dark.brl-button--secondary { color: var(--gray-0); border-color: color-mix(in srgb, var(--gray-0) 40%, transparent) }
+.brl-button--on-dark.brl-button--secondary:hover { border-color: var(--gray-0); background: color-mix(in srgb, var(--gray-0) 10%, transparent) }
+.brl-button--on-dark.brl-button--tertiary { background: color-mix(in srgb, var(--gray-0) 10%, transparent); color: var(--gray-0) }
+.brl-button--on-dark.brl-button--tertiary:hover { background: color-mix(in srgb, var(--gray-0) 20%, transparent) }
+.brl-button--on-dark.brl-button--ghost { color: var(--gray-0) }
+.brl-button--on-dark.brl-button--ghost:hover { color: var(--accent-on-dark) }
+.brl-button--on-dark.brl-button--link { color: var(--accent-on-dark) }
+.brl-button--on-dark.brl-button--link:hover { color: var(--gray-0) }
+
+.brl-button:disabled, .brl-button[aria-disabled="true"] {
+  background: var(--disabled-bg);
+  color: var(--disabled-fg);
+  border-color: transparent;
+  cursor: not-allowed;
+  text-decoration: none;
+  outline: none;
+}
+
+.brl-panel { background: var(--surface-subtle); border: 1px solid var(--border); border-radius: var(--radius-16); padding: var(--space-32); color: var(--text) }
+.brl-link { color: var(--link); text-underline-offset: 4px }
+.brl-link:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px }
+
+/* Uppercase mono label — the eyebrow above section headings, card categories and counters. */
+.brl-mono-label {
+  font-family: var(--font-button);
+  font-size: var(--type-mono-label-size);
+  line-height: var(--type-mono-label-line);
+  font-weight: var(--type-mono-label-weight);
+  letter-spacing: var(--type-mono-label-tracking);
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) { .brl-button { transition: none } }

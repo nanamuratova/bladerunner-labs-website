@@ -1,0 +1,15 @@
+{
+  "title": "BladeRunner Labs \u2014 Applied AI, infrastructure and developer tools",
+  "description": "BladeRunner Labs is a technology and R&D consulting company working across applied AI, computing infrastructure and developer tools. Current product work: DAGRunner and AI Couture.",
+  "language": "en",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  },
+  "icons": {
+    "icon": "./assets/logo/mark.svg"
+  }
+}
