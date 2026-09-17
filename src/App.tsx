@@ -420,12 +420,12 @@ function Contact() {
                   {row.href ? (
                     <a
                       href={row.href}
-                      className="brl-body-lg mt-3 block text-gray-900 transition-colors hover:text-accent"
+                      className="brl-h6 mt-3 block text-gray-900 transition-colors hover:text-accent"
                     >
                       {row.value}
                     </a>
                   ) : (
-                    <span className="brl-body-lg mt-3 block text-gray-900">{row.value}</span>
+                    <span className="brl-h6 mt-3 block text-gray-900">{row.value}</span>
                   )}
                 </div>
               ))}
@@ -437,7 +437,7 @@ function Contact() {
                 <span className="brl-mono-label text-gray-500">Careers</span>
                 <a
                   href="mailto:jobs@bladerunner.io"
-                  className="brl-body-lg mt-3 block text-gray-900 transition-colors hover:text-accent"
+                  className="brl-h6 mt-3 block text-gray-900 transition-colors hover:text-accent"
                 >
                   jobs@bladerunner.io
                 </a>
@@ -453,7 +453,7 @@ function Contact() {
                       rel="noreferrer"
                       className="group flex items-center gap-2 text-gray-900 transition-colors hover:text-accent"
                     >
-                      <span className="brl-body-lg">{s.name}</span>
+                      <span className="brl-h6">{s.name}</span>
                       <svg
                         width="16"
                         height="16"
