@@ -164,12 +164,12 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 function HeroBubbles() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-      <span className="bubble animate-floatA h-[340px] w-[340px] sm:h-[620px] sm:w-[620px] right-[-6%] bottom-[-22%] opacity-90" />
-      <span className="bubble animate-floatB h-[240px] w-[240px] sm:h-[440px] sm:w-[440px] right-[12%] top-[-14%] opacity-80" />
-      <span className="bubble animate-floatC h-[110px] w-[110px] sm:h-[190px] sm:w-[190px] right-[26%] top-[16%]" />
-      <span className="bubble animate-floatA h-[70px] w-[70px] sm:h-[120px] sm:w-[120px] right-[40%] bottom-[16%] opacity-90" />
-      <span className="bubble animate-floatC h-[170px] w-[170px] sm:h-[300px] sm:w-[300px] left-[-5%] bottom-[8%] opacity-70" />
-      <span className="bubble animate-floatB h-[54px] w-[54px] sm:h-[90px] sm:w-[90px] left-[8%] top-[22%] opacity-80" />
+      {/* Large fields that run off the canvas, then two smaller shapes for scale. */}
+      <span className="bubble animate-floatA h-[560px] w-[560px] right-[-14%] bottom-[-38%] sm:h-[1100px] sm:w-[1100px]" />
+      <span className="bubble bubble--violet animate-floatB h-[420px] w-[420px] right-[6%] top-[-26%] sm:h-[860px] sm:w-[860px]" />
+      <span className="bubble bubble--edge animate-floatC h-[360px] w-[360px] left-[-16%] bottom-[-26%] sm:h-[760px] sm:w-[760px]" />
+      <span className="bubble bubble--blush animate-floatC h-[140px] w-[140px] right-[30%] top-[14%] sm:h-[260px] sm:w-[260px]" />
+      <span className="bubble bubble--violet animate-floatA h-[70px] w-[70px] right-[44%] bottom-[18%] sm:h-[130px] sm:w-[130px]" />
     </div>
   )
 }
@@ -178,7 +178,7 @@ function Hero() {
   return (
     <section id="top" className="hero-bg relative overflow-hidden">
       <HeroBubbles />
-      <div className="relative mx-auto max-w-[1200px] px-6">
+      <div className="relative z-10 mx-auto max-w-[1200px] px-6">
         <div className="grid grid-cols-1 gap-12 py-24 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:py-36">
           <div className="flex flex-col justify-center">
             <SectionLabel>R&amp;D Consulting</SectionLabel>
