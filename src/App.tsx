@@ -164,13 +164,12 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 function HeroBubbles() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-      {/* Back to front: the far shapes are blurred, the near ones stay sharp. */}
-      <span className="bubble bubble--far animate-floatC h-[180px] w-[180px] left-[-5%] bottom-[8%] opacity-70" />
-      <span className="bubble bubble--far animate-floatB h-10 w-10 left-[8%] top-[22%] opacity-80" />
-      <span className="bubble bubble--far animate-floatC h-[110px] w-[110px] right-[26%] top-[16%] opacity-90" />
-      <span className="bubble bubble--mid animate-floatB h-[300px] w-[300px] right-[12%] top-[-14%] opacity-80" />
-      <span className="bubble animate-floatA h-16 w-16 right-[40%] bottom-[16%]" />
-      <span className="bubble animate-floatA h-[420px] w-[420px] right-[-6%] bottom-[-22%]" />
+      <span className="bubble animate-floatA h-[420px] w-[420px] right-[-6%] bottom-[-22%] opacity-90" />
+      <span className="bubble animate-floatB h-[300px] w-[300px] right-[12%] top-[-14%] opacity-80" />
+      <span className="bubble animate-floatC h-[110px] w-[110px] right-[26%] top-[16%]" />
+      <span className="bubble animate-floatA h-16 w-16 right-[40%] bottom-[16%] opacity-90" />
+      <span className="bubble animate-floatC h-[180px] w-[180px] left-[-5%] bottom-[8%] opacity-70" />
+      <span className="bubble animate-floatB h-10 w-10 left-[8%] top-[22%] opacity-80" />
     </div>
   )
 }

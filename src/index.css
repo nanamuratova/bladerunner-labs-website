@@ -113,23 +113,7 @@ body {
   border-radius: var(--radius-999999);
   background: var(--bubble-fill);
   box-shadow: var(--bubble-shadow);
-  filter: blur(var(--bubble-blur-near));
   will-change: transform;
-}
-/* Depth tiers — sharp in front, softer behind. */
-.bubble--mid { filter: blur(var(--bubble-blur-mid)); }
-.bubble--far { filter: blur(var(--bubble-blur-far)); }
-/* Iridescent film over the glass. */
-.bubble::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background-image: var(--bubble-sheen);
-  mix-blend-mode: multiply;
-  opacity: var(--bubble-sheen-opacity);
-  mask-image: var(--bubble-sheen-mask);
-  -webkit-mask-image: var(--bubble-sheen-mask);
 }
 @keyframes floatA {
   0%, 100% { transform: translate(0, 0) rotate(0deg); }

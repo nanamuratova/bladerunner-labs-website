@@ -18,10 +18,8 @@ covers the uppercase eyebrows, card categories and counters at 12/16 with 0.08em
 The gray palette, accent, spacing and radius scales are unchanged from v0.1.
 
 The hero's blue mesh gradient and bubbles, plus the 10% accent tint behind service icons, are
-recorded in `tokens.css` as `--hero-gradient`, `--bubble-fill`, `--bubble-shadow`,
-`--bubble-sheen` (with its opacity and rim mask), the three `--bubble-blur-*` depth tiers and
-`--accent-subtle`. Which tier a bubble belongs to is a class in `App.tsx`
-(`bubble--mid`, `bubble--far`); how each tier looks lives in the tokens. The mesh's two strongest layers are the accent at 28% and 34%; the rest are
+recorded in `tokens.css` as `--hero-gradient`, `--bubble-fill`, `--bubble-shadow` and
+`--accent-subtle`. The mesh's two strongest layers are the accent at 28% and 34%; the rest are
 hero-only blues. All of it is decorative — not for text, surfaces or controls.
 
 ## How Tailwind is bound to the tokens
