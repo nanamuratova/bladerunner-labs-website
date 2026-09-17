@@ -164,12 +164,12 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 function HeroBubbles() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-      <span className="bubble animate-floatA h-[340px] w-[340px] sm:h-[620px] sm:w-[620px] right-[-6%] bottom-[-22%] opacity-90" />
-      <span className="bubble animate-floatB h-[240px] w-[240px] sm:h-[440px] sm:w-[440px] right-[12%] top-[-14%] opacity-80" />
-      <span className="bubble animate-floatC h-[110px] w-[110px] sm:h-[190px] sm:w-[190px] right-[26%] top-[16%]" />
-      <span className="bubble animate-floatA h-[70px] w-[70px] sm:h-[120px] sm:w-[120px] right-[40%] bottom-[16%] opacity-90" />
-      <span className="bubble animate-floatC h-[170px] w-[170px] sm:h-[300px] sm:w-[300px] left-[-5%] bottom-[8%] opacity-70" />
-      <span className="bubble animate-floatB h-[54px] w-[54px] sm:h-[90px] sm:w-[90px] left-[8%] top-[22%] opacity-80" />
+      <span className="bubble animate-floatA h-[420px] w-[420px] right-[-6%] bottom-[-22%] opacity-90" />
+      <span className="bubble animate-floatB h-[300px] w-[300px] right-[12%] top-[-14%] opacity-80" />
+      <span className="bubble animate-floatC h-[110px] w-[110px] right-[26%] top-[16%]" />
+      <span className="bubble animate-floatA h-16 w-16 right-[40%] bottom-[16%] opacity-90" />
+      <span className="bubble animate-floatC h-[180px] w-[180px] left-[-5%] bottom-[8%] opacity-70" />
+      <span className="bubble animate-floatB h-10 w-10 left-[8%] top-[22%] opacity-80" />
     </div>
   )
 }
