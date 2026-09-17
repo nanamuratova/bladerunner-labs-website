@@ -77,9 +77,11 @@ buttons an accessible name. Do not rely on hover to expose essential content.
 
 ## Decorative treatments
 
-The hero uses a blue mesh gradient and floating bubbles (`--hero-gradient`, `--bubble-fill`,
-`--bubble-shadow`); its two strongest layers are the accent at 28% and 34%, over hero-only
-light blues. Service icons sit on a 10% accent tint (`--accent-subtle`). These are decorative
+The hero uses a blue mesh gradient and large floating bubbles with a holographic finish
+(`--hero-gradient`, `--bubble-fill`, `--bubble-sheen`, `--bubble-highlight`, `--bubble-blur`,
+`--bubble-shadow`). The mesh's two strongest layers are the accent at 28% and 34%, over
+hero-only light blues. Each bubble is a soft fill, an iridescent conic sheen blended with
+`overlay`, a specular highlight, and a 7px blur; bubbles scale down below 640px. Service icons sit on a 10% accent tint (`--accent-subtle`). These are decorative
 only: they are not part of the gray palette and must not be used for text, surfaces, borders
 or controls, where contrast is not guaranteed.
 
