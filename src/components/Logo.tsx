@@ -1,20 +1,25 @@
 // BladeRunner Labs logo artwork in public/assets/logo/.
 //
-// The client's official set is the stacked wordmark and the symbol, both in the
-// brand blue (#004E9E) with a cyan bar (#009CE6):
+// These are the client's own files, in the brand blue #01509F with the cyan bar
+// #009CE6 (colours read from their transparent PNG, not sampled from a JPEG):
 //   wordmark — "BLADE / RUNNER" with LABS vertical (default, used in the header)
 //   mark     — the bracket symbol on its own, also the favicon
 //
-// lockupAlt and wordmarkAlt are the earlier Figma-drawn horizontal versions, in
-// black and the site accent. They are not client artwork — keep them out of
-// anything the client sees unless they supply a horizontal lockup.
+// Both are PNG. The client has not supplied vector artwork; ask for SVG/AI/EPS
+// when you can, and swap these out — the redrawn SVGs that shipped earlier had
+// the wrong proportions (wordmark 2.96:1 against their 2.72:1, symbol 1.83:1
+// against 1.69:1), so they are no longer used.
+//
+// lockupAlt and wordmarkAlt are the Figma-drawn horizontal versions in black and
+// the site accent. They are not client artwork — keep them away from anything the
+// client sees unless they supply a horizontal lockup.
 // On a dark surface pass onDark, which knocks the whole mark out to white.
 
 import { asset } from '../assets'
 
 const sources = {
-  wordmark: asset('/assets/logo/brand-wordmark.svg'),
-  mark: asset('/assets/logo/brand-mark.svg'),
+  wordmark: asset('/assets/logo/brand-wordmark.png'),
+  mark: asset('/assets/logo/brand-mark.png'),
   lockupAlt: asset('/assets/logo/lockup.svg'),
   wordmarkAlt: asset('/assets/logo/wordmark.svg'),
 } as const
