@@ -40,18 +40,21 @@ export function ProjectDetail({
   onBack: () => void
 }) {
   const contain = project.heroFit === 'contain'
-  const scrolled = useScrolled()
+  // The sub-header is what sticks, so it takes its border once the logo row has
+  // scrolled past rather than at the first pixel.
+  const stuck = useScrolled(72)
   return (
     // Keyed on the project so the fade replays when you move to the next one.
     <div key={project.id} className="article-in min-h-screen bg-white text-gray-900">
-      {/* Same shell as the home page header, with a sub-header for the navigation. */}
-      <header className={headerClass(scrolled)}>
-        <div className="mx-auto flex h-20 max-w-[1200px] items-center px-6">
-          <a href={homePath()} onClick={navigateOnClick(onBack)} aria-label="BladeRunner Labs home">
-            <Logo />
-          </a>
-        </div>
-        <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-6 pb-3">
+      {/* The logo row scrolls away. The navigation below it sticks, so it has to sit
+          outside the header — a sticky element can only travel inside its parent. */}
+      <header className="mx-auto flex h-20 max-w-[1200px] items-center px-6">
+        <a href={homePath()} onClick={navigateOnClick(onBack)} aria-label="BladeRunner Labs home">
+          <Logo />
+        </a>
+      </header>
+      <nav className={headerClass(stuck)} aria-label="Article">
+        <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-6">
           <a
             href={homePath()}
             onClick={navigateOnClick(onBack)}
@@ -69,7 +72,7 @@ export function ProjectDetail({
             <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">→</span>
           </a>
         </div>
-      </header>
+      </nav>
 
       <main className="mx-auto max-w-[1200px] px-6">
         {/* Hero */}
@@ -126,9 +129,10 @@ export function ProjectDetail({
                 // workload, and the lines let them read as a set.
                 <ul className="divide-y divide-gray-200 border-t border-b border-gray-200">
                   {section.bullets.map((item) => (
-                    <li key={item} className="brl-body relative py-4 pl-5 text-gray-600">
-                      <span className="absolute top-7 left-0 h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
-                      {item}
+                    <li key={item} className="brl-body flex gap-3 py-4 text-gray-600">
+                      {/* mt-2 centres the 8px dot on a 24px first line, whatever the row padding */}
+                      <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+                      <span>{item}</span>
                     </li>
                   ))}
                 </ul>
