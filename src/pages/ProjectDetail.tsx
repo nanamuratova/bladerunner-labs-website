@@ -3,6 +3,7 @@ import { SectionLabel } from '../components/SectionLabel'
 import { Contact } from '../sections/Contact'
 import { Footer } from '../sections/Footer'
 import { asset } from '../assets'
+import { iconChipStyle, uiIcons } from '../icons'
 import { homePath, navigateOnClick, projectPath } from '../routing'
 import { headerClass, useScrolled } from '../components/useScrolled'
 import type { Project } from '../data'
@@ -110,9 +111,16 @@ export function ProjectDetail({
       heading: 'Capabilities',
       content: (
         <div className="grid grid-cols-1 gap-px overflow-hidden rounded-[var(--radius-16)] border border-gray-200 bg-gray-200 sm:grid-cols-2">
-          {project.capabilities.map((c) => (
+          {project.capabilities.map((c, i) => (
             <div key={c.title} className="bg-white p-8">
-              <h3 className="brl-h6">{c.title}</h3>
+              {/* Same icon chip as the home page services. */}
+              <span className="flex h-11 w-11 items-center justify-center rounded-[var(--radius-12)] bg-accent-subtle">
+                <span
+                  className="block h-[22px] w-[22px] bg-accent"
+                  style={iconChipStyle(uiIcons[i % uiIcons.length])}
+                />
+              </span>
+              <h3 className="brl-h6 mt-5">{c.title}</h3>
               <p className="brl-body mt-3 text-gray-600">{c.body}</p>
             </div>
           ))}

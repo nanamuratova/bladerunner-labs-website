@@ -4,6 +4,7 @@ import { ButtonLink } from './components/Button'
 import { ProjectDetail } from './pages/ProjectDetail'
 import { projects, services, type Project } from './data'
 import { asset } from './assets'
+import { iconChipStyle, uiIcons } from './icons'
 import { currentProjectId, homePath, navigateOnClick, projectPath, pushPath, replacePath } from './routing'
 import { SectionLabel } from './components/SectionLabel'
 import { headerClass, useScrolled } from './components/useScrolled'
@@ -16,14 +17,6 @@ const NAV = [
   { label: 'Services', href: '#services' },
   { label: 'Technology', href: '#technology' },
   { label: 'Contact', href: '#contact' },
-]
-
-// Service icons from the Figma template (masked in the accent color).
-const serviceIcons = [
-  asset('/assets/1b996.svg'), // Research & system architecture
-  asset('/assets/ad5a0.svg'), // Software & infrastructure
-  asset('/assets/61f57.svg'), // Performance & optimization
-  asset('/assets/1be11.svg'), // Developer tools & workflows
 ]
 
 export default function App() {
@@ -323,14 +316,7 @@ function Services() {
                 <span className="flex h-11 w-11 items-center justify-center rounded-[var(--radius-12)] bg-accent-subtle">
                   <span
                     className="block h-[22px] w-[22px] bg-accent"
-                    style={{
-                      maskImage: `url(${serviceIcons[i]})`,
-                      WebkitMaskImage: `url(${serviceIcons[i]})`,
-                      maskRepeat: 'no-repeat',
-                      WebkitMaskRepeat: 'no-repeat',
-                      maskSize: 'contain',
-                      WebkitMaskSize: 'contain',
-                    }}
+                    style={iconChipStyle(uiIcons[i])}
                   />
                 </span>
                 <span className="brl-mono-label text-gray-400">{String(i + 1).padStart(2, '0')}</span>
