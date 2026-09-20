@@ -70,6 +70,12 @@ in `dist/`, and every push to `main` deploys it to the live preview above.
 - **DAGRunner article** — written from the client's deck (`DAG_RUNNER.pdf`) and the technical
   overview. The measured results (20 → 2 min, 15% → 95% GPU utilization) name the workload and
   carry the deck's own qualifier, but publishing them needs the client's sign-off.
+- **AI Couture article** — written from the client's slide deck. Three things there need
+  sign-off before this is public: the market figures (attributed to NRF, Appriss Retail,
+  Signifyd, Happy Returns, Narvar and Optoro, as the deck cites them), the patent claim
+  US 11,113,892 B2, and the retailer ROI, which is written as expected outcomes because the
+  deck reports no retailer results. The original brief specifically cautioned against
+  unverified accuracy, patent and ROI claims.
 - **Third-party logos** — the technology strip loads brand logos from `cdn.simpleicons.org`
   at page load. Confirm the trademark use, and consider self-hosting them.
 - **Artwork** — project cards and detail pages use the supplied images. The logo is the

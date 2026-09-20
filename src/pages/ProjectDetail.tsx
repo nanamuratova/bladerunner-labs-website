@@ -108,6 +108,17 @@ export function ProjectDetail({
                   {p}
                 </p>
               ))}
+              {section.stats && (
+                // Figures in the same boxed grid the capabilities use.
+                <div className="grid grid-cols-1 gap-px overflow-hidden rounded-[var(--radius-16)] border border-gray-200 bg-gray-200 sm:grid-cols-2">
+                  {section.stats.map((stat) => (
+                    <div key={stat.label} className="bg-white p-8">
+                      <p className="brl-h3 text-accent">{stat.value}</p>
+                      <p className="brl-body mt-2 text-gray-600">{stat.label}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
               {section.bullets && (
                 // Ruled rows rather than bullets: the items are each a kind of
                 // workload, and the lines let them read as a set.
@@ -120,6 +131,7 @@ export function ProjectDetail({
                   ))}
                 </ul>
               )}
+              {section.note && <p className="brl-body-sm text-gray-500">{section.note}</p>}
             </div>
           </ArticleRow>
         ))}
@@ -134,21 +146,6 @@ export function ProjectDetail({
             ))}
           </div>
         </ArticleRow>
-
-        {project.results && (
-          <ArticleRow heading="Measured results">
-            {/* Same boxed grid as the capabilities above. */}
-            <div className="grid grid-cols-1 gap-px overflow-hidden rounded-[var(--radius-16)] border border-gray-200 bg-gray-200 sm:grid-cols-2">
-              {project.results.metrics.map((m) => (
-                <div key={m.label} className="bg-white p-8">
-                  <p className="brl-h3 text-accent">{m.value}</p>
-                  <p className="brl-body mt-2 text-gray-600">{m.label}</p>
-                </div>
-              ))}
-            </div>
-            <p className="brl-body-sm mt-6 text-gray-500">{project.results.note}</p>
-          </ArticleRow>
-        )}
 
         {project.status && (
           <ArticleRow heading="Where it stands">

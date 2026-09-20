@@ -13,9 +13,15 @@ export type Project = {
   overview: string[]
   capabilities: { title: string; body: string }[]
   /** Longer article sections, rendered under the capabilities. */
-  sections?: { heading: string; paragraphs?: string[]; bullets?: string[] }[]
-  /** Measured results. `note` must say which workload they came from. */
-  results?: { metrics: { value: string; label: string }[]; note: string }
+  sections?: {
+    heading: string
+    paragraphs?: string[]
+    bullets?: string[]
+    /** Figures shown as boxes. */
+    stats?: { value: string; label: string }[]
+    /** Where the figures came from, or what they do and don't claim. */
+    note?: string
+  }[]
   /** What is ready, what is still moving. */
   status?: { state: string; items: string[] }[]
 }
@@ -71,14 +77,15 @@ export const projects: Project[] = [
           'Multi-page documents',
         ],
       },
+      {
+        heading: 'Measured results',
+        stats: [
+          { value: '20 \u2192 2 min', label: 'End-to-end runtime' },
+          { value: '15% \u2192 95%', label: 'GPU utilization' },
+        ],
+        note: 'Measured on one real virtual try-on pipeline \u2014 an internal benchmark run under favorable conditions. Results on other workloads will differ.',
+      },
     ],
-    results: {
-      metrics: [
-        { value: '20 → 2 min', label: 'End-to-end runtime' },
-        { value: '15% → 95%', label: 'GPU utilization' },
-      ],
-      note: 'Measured on one real virtual try-on pipeline — an internal benchmark run under favorable conditions. Results on other workloads will differ.',
-    },
     status: [
       {
         state: 'Ready',
@@ -104,14 +111,68 @@ export const projects: Project[] = [
       'Virtual fitting technology combining body measurement, 3D and generative AI. AI Couture is being developed to help shoppers understand how clothing fits their own body.',
     tags: ['Body measurement', '3D simulation', 'Virtual fitting'],
     overview: [
-      'AI Couture estimates body measurements from ordinary photographs and reconstructs a personalized 3D body model, avoiding specialized capture hardware.',
-      'Garments are simulated against that model so shoppers can see how a specific size drapes and fits on their own proportions before buying.',
+      'AI Couture is a virtual fitting platform built around practical fit accuracy. It replaces guesswork with a physics-based fitting room: shoppers see themselves in a virtual mirror wearing digital garment patterns at a specific size, before they buy.',
+      'The fit is computed, not illustrated. Garment tension, weight and drape are simulated against a digital twin of the shopper\u2019s own body, so a size that will not work looks wrong on screen rather than at home.',
     ],
     capabilities: [
       { title: 'Body measurement', body: 'Measurements are derived from standard photos with computer vision models.' },
       { title: '3D reconstruction', body: 'A personalized body model provides the basis for accurate fit prediction.' },
       { title: 'Generative fit preview', body: 'Generative models render how garments look and drape on the individual.' },
       { title: 'Size guidance', body: 'Fit results translate into concrete, per-garment size recommendations.' },
+    ],
+    sections: [
+      {
+        heading: 'The problem',
+        paragraphs: [
+          'Online fashion carries a margin drain that in-store retail does not. Between a quarter and a third of what sells online comes back, against 8.5\u201310% in store, and over half of those returns trace directly to sizing uncertainty.',
+          'Shoppers have adapted to that uncertainty by ordering several sizes and returning the rest, which inflates logistics costs, slows inventory turnover and makes returns a routine part of the purchase cycle rather than an exception.',
+        ],
+        stats: [
+          { value: '25\u201330%', label: 'Of online fashion sales returned, against 8.5\u201310% in store' },
+          { value: '$849.9 bn', label: 'Returned annually \u2014 15.8% of retail sales' },
+          { value: '$15\u201330', label: 'Lost processing each return' },
+          { value: '63%', label: 'Of shoppers order several sizes to try at home' },
+        ],
+        note: 'Figures as cited in the AI Couture deck, from the National Retail Federation, Appriss Retail, Signifyd Intelligence, Happy Returns, the Narvar Consumer Study and the Optoro Reverse Logistics Report.',
+      },
+      {
+        heading: 'Why existing try-ons fall short',
+        paragraphs: [
+          'Most virtual try-ons superimpose a shopper\u2019s face onto flat templates or generic game-style avatars. They can look convincing and still tell the shopper nothing about fit, because nothing in them is computed from physics.',
+        ],
+        bullets: [
+          'Accuracy \u2014 competitor try-ons are not physics-based, so what they show is an illustration rather than a measurement',
+          'Drape \u2014 garment fit, drape and movement are not assessed, even when the render looks realistic',
+          'Trust \u2014 shoppers learn to order more and return most, and the return rate holds',
+        ],
+      },
+      {
+        heading: 'A digital twin, not an avatar',
+        paragraphs: [
+          'AI Couture builds a dynamic, data-driven digital twin of the shopper\u2019s actual body rather than a visual skin. Physics-based fabric simulation then responds to that twin\u2019s exact geometry, accounting for drape, tension and weight derived from real body measurements.',
+          'Capture is deliberately light. Using a smartphone and a proprietary T-shirt with passive sensors, the shopper completes a 360\u00b0 scan in a dedicated app, which the platform turns into a high-precision fitting session and an AI-generated fitting video.',
+        ],
+        note: 'The capture method is claimed under patent US 11,113,892 B2, \u201c3D-Based Clothing and Accessory Retail Method\u201d.',
+      },
+      {
+        heading: 'Built on DAGRunner',
+        paragraphs: [
+          'The simulations run on DAGRunner, the orchestration platform built by the same team. Containerized service pipelines, multi-processing and GPU auto-batching give the multi-level parallelism that physics-based garment simulation needs to run at scale rather than one job at a time.',
+        ],
+      },
+      {
+        heading: 'What retailers gain',
+        paragraphs: [
+          'The case to a fashion brand rests on four outcomes:',
+        ],
+        bullets: [
+          'Accurate biometrics \u2014 precise measurements, and a better fit',
+          'A better fitting experience for the end user',
+          'Fewer returns, and the profitability that follows',
+          'Enhanced trust, and customers who come back',
+        ],
+        note: 'Outcomes the platform is designed to produce. The deck reports no retailer results yet, so these are expectations rather than measured gains.',
+      },
     ],
   },
 ]
