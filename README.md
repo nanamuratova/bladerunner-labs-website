@@ -55,6 +55,9 @@ in `dist/`, and every push to `main` deploys it to the live preview above.
 
 - **Copy** — the phone number, `jobs@bladerunner.io`, the Tel Aviv address and the technical
   claims on the project detail pages are newer than the approved copy draft. Confirm them.
+- **DAGRunner article** — written from the client's deck (`DAG_RUNNER.pdf`) and the technical
+  overview. The measured results (20 → 2 min, 15% → 95% GPU utilization) name the workload and
+  carry the deck's own qualifier, but publishing them needs the client's sign-off.
 - **Third-party logos** — the technology strip loads brand logos from `cdn.simpleicons.org`
   at page load. Confirm the trademark use, and consider self-hosting them.
 - **Artwork** — project cards and detail pages use the supplied images. The logo is the

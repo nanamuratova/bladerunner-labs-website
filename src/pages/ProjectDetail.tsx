@@ -5,6 +5,16 @@ import { Footer } from '../sections/Footer'
 import { asset } from '../assets'
 import type { Project } from '../data'
 
+/** Every article row: the heading on the left, the content on the right. */
+function ArticleRow({ heading, children }: { heading: string; children: React.ReactNode }) {
+  return (
+    <section className="grid grid-cols-1 gap-12 border-t border-gray-200 py-16 lg:grid-cols-[280px_1fr] lg:py-20">
+      <h2 className="brl-h4">{heading}</h2>
+      <div className="max-w-2xl">{children}</div>
+    </section>
+  )
+}
+
 export function ProjectDetail({
   project,
   next,
@@ -16,6 +26,7 @@ export function ProjectDetail({
   onOpenProject: (p: Project) => void
   onBack: () => void
 }) {
+  const contain = project.heroFit === 'contain'
   return (
     // Keyed on the project so the fade replays when you move to the next one.
     <div key={project.id} className="article-in min-h-screen bg-white text-gray-900">
@@ -54,26 +65,52 @@ export function ProjectDetail({
             <h1 className="brl-h1 mt-3">{project.name}</h1>
             <p className="brl-body-lg mt-6 max-w-xl text-gray-600">{project.description}</p>
           </div>
-          <div className="aspect-[16/10] overflow-hidden rounded-[var(--radius-24)] bg-gray-900">
-            <img src={asset(project.image)} alt={project.name} className="h-full w-full object-cover" />
+          <div
+            className={`aspect-[16/10] overflow-hidden ${
+              contain ? 'bg-white' : 'rounded-[var(--radius-24)] bg-gray-900'
+            }`}
+          >
+            <img
+              src={asset(project.heroImage ?? project.image)}
+              alt={project.name}
+              className={`h-full w-full ${contain ? 'object-contain' : 'object-cover'}`}
+            />
           </div>
         </section>
 
-        {/* Overview */}
-        <section className="grid grid-cols-1 gap-12 border-t border-gray-200 py-16 lg:grid-cols-[280px_1fr] lg:py-20">
-          <h2 className="brl-h4">Overview</h2>
-          <div className="max-w-2xl space-y-6">
+        <ArticleRow heading="Overview">
+          <div className="space-y-6">
             {project.overview.map((p, i) => (
               <p key={i} className="brl-body-lg text-gray-600">
                 {p}
               </p>
             ))}
           </div>
-        </section>
+        </ArticleRow>
 
-        {/* Capabilities */}
-        <section className="grid grid-cols-1 gap-12 border-t border-gray-200 py-16 lg:grid-cols-[280px_1fr] lg:py-20">
-          <h2 className="brl-h4">Capabilities</h2>
+        {project.sections?.map((section) => (
+          <ArticleRow key={section.heading} heading={section.heading}>
+            <div className="space-y-6">
+              {section.paragraphs?.map((p, i) => (
+                <p key={i} className="brl-body-lg text-gray-600">
+                  {p}
+                </p>
+              ))}
+              {section.bullets && (
+                <ul className="flex flex-col gap-2">
+                  {section.bullets.map((item) => (
+                    <li key={item} className="brl-body relative pl-5 text-gray-600">
+                      <span className="absolute top-2 left-0 h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </ArticleRow>
+        ))}
+
+        <ArticleRow heading="Capabilities">
           <div className="grid grid-cols-1 gap-px overflow-hidden rounded-[var(--radius-16)] border border-gray-200 bg-gray-200 sm:grid-cols-2">
             {project.capabilities.map((c) => (
               <div key={c.title} className="bg-white p-8">
@@ -82,7 +119,41 @@ export function ProjectDetail({
               </div>
             ))}
           </div>
-        </section>
+        </ArticleRow>
+
+        {project.results && (
+          <ArticleRow heading="Measured results">
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+              {project.results.metrics.map((m) => (
+                <div key={m.label}>
+                  <p className="brl-h3 text-accent">{m.value}</p>
+                  <p className="brl-body mt-2 text-gray-600">{m.label}</p>
+                </div>
+              ))}
+            </div>
+            <p className="brl-body-sm mt-8 text-gray-500">{project.results.note}</p>
+          </ArticleRow>
+        )}
+
+        {project.status && (
+          <ArticleRow heading="Where it stands">
+            <div className="flex flex-col gap-8">
+              {project.status.map((group) => (
+                <div key={group.state} className="grid grid-cols-1 gap-3 sm:grid-cols-[140px_1fr]">
+                  <span className="brl-mono-label pt-1 text-gray-500">{group.state}</span>
+                  <ul className="flex flex-col gap-2">
+                    {group.items.map((item) => (
+                      <li key={item} className="brl-body text-gray-900">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </ArticleRow>
+        )}
+
       </main>
 
       {/* Same contact section and footer as the home page */}
