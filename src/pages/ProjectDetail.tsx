@@ -4,6 +4,7 @@ import { Contact } from '../sections/Contact'
 import { Footer } from '../sections/Footer'
 import { asset } from '../assets'
 import { homePath, navigateOnClick, projectPath } from '../routing'
+import { headerClass, useScrolled } from '../components/useScrolled'
 import type { Project } from '../data'
 
 /**
@@ -39,17 +40,18 @@ export function ProjectDetail({
   onBack: () => void
 }) {
   const contain = project.heroFit === 'contain'
+  const scrolled = useScrolled()
   return (
     // Keyed on the project so the fade replays when you move to the next one.
     <div key={project.id} className="article-in min-h-screen bg-white text-gray-900">
-      {/* Header: the logo bar, then a sub-header holding Back */}
-      <header className="sticky top-0 z-40 bg-white/85 backdrop-blur-md">
-        <div className="mx-auto flex h-20 max-w-[1200px] items-center border-b border-gray-200 px-6">
+      {/* Same shell as the home page header, with a sub-header for the navigation. */}
+      <header className={headerClass(scrolled)}>
+        <div className="mx-auto flex h-20 max-w-[1200px] items-center px-6">
           <a href={homePath()} onClick={navigateOnClick(onBack)} aria-label="BladeRunner Labs home">
             <Logo />
           </a>
         </div>
-        <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-6">
+        <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-6 pb-3">
           <a
             href={homePath()}
             onClick={navigateOnClick(onBack)}

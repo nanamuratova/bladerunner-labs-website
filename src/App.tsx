@@ -6,6 +6,7 @@ import { projects, services, type Project } from './data'
 import { asset } from './assets'
 import { currentProjectId, homePath, navigateOnClick, projectPath, pushPath, replacePath } from './routing'
 import { SectionLabel } from './components/SectionLabel'
+import { headerClass, useScrolled } from './components/useScrolled'
 import { Contact } from './sections/Contact'
 import { Footer } from './sections/Footer'
 
@@ -94,16 +95,9 @@ function Home({ onOpenProject }: { onOpenProject: (p: Project) => void }) {
 /* ------------------------------------------------------------------ */
 
 function Header() {
-  const [scrolled, setScrolled] = useState(false)
+  const scrolled = useScrolled()
   const [open, setOpen] = useState(false)
   const [activeId, setActiveId] = useState('')
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   useEffect(() => {
     const ids = NAV.map((n) => n.href.slice(1))
@@ -126,11 +120,7 @@ function Header() {
   }, [])
 
   return (
-    <header
-      className={`sticky top-0 z-40 border-b transition-colors duration-200 ${
-        scrolled ? 'border-gray-200 bg-white/85 backdrop-blur-md' : 'border-transparent bg-white'
-      }`}
-    >
+    <header className={headerClass(scrolled)}>
       <div className="mx-auto flex h-20 max-w-[1200px] items-center justify-between px-6">
         <a href="#top" aria-label="BladeRunner Labs home">
           <Logo />
