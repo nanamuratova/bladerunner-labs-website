@@ -3,6 +3,7 @@ import { SectionLabel } from '../components/SectionLabel'
 import { Contact } from '../sections/Contact'
 import { Footer } from '../sections/Footer'
 import { asset } from '../assets'
+import { homePath, navigateOnClick, projectPath } from '../routing'
 import type { Project } from '../data'
 
 /** Every article row: the heading on the left, the content on the right. */
@@ -33,27 +34,27 @@ export function ProjectDetail({
       {/* Header: the logo bar, then a sub-header holding Back */}
       <header className="sticky top-0 z-40 bg-white/85 backdrop-blur-md">
         <div className="mx-auto flex h-20 max-w-[1200px] items-center border-b border-gray-200 px-6">
-          <button type="button" onClick={onBack} className="cursor-pointer" aria-label="BladeRunner Labs home">
+          <a href={homePath()} onClick={navigateOnClick(onBack)} aria-label="BladeRunner Labs home">
             <Logo />
-          </button>
+          </a>
         </div>
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-6">
-          <button
-            type="button"
-            onClick={onBack}
+          <a
+            href={homePath()}
+            onClick={navigateOnClick(onBack)}
             className="brl-mono-label group flex h-12 items-center gap-2 text-gray-600 transition-colors hover:text-gray-900"
           >
             <span aria-hidden="true" className="transition-transform group-hover:-translate-x-0.5">←</span>
             Back
-          </button>
-          <button
-            type="button"
-            onClick={() => onOpenProject(next)}
+          </a>
+          <a
+            href={projectPath(next.id)}
+            onClick={navigateOnClick(() => onOpenProject(next))}
             className="brl-mono-label group flex h-12 items-center gap-2 text-gray-600 transition-colors hover:text-gray-900"
           >
             <span className="hidden sm:inline">Next project:</span> {next.name}
             <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">→</span>
-          </button>
+          </a>
         </div>
       </header>
 

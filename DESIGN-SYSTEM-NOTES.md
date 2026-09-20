@@ -42,7 +42,9 @@ higher than they did in the export.
 
 ## Page structure
 
-`src/App.tsx` is the home page; `src/pages/ProjectDetail.tsx` is a project article. The contact
+`src/App.tsx` is the home page; `src/pages/ProjectDetail.tsx` is a project article, reached at
+`…/projects/<id>` through the small router in `src/routing.ts` (real paths, so articles can be
+bookmarked and shared; the deploy publishes a 404.html copy of the shell so deep links load). The contact
 section and footer live in `src/sections/`, so both pages render the same markup rather than a
 copy. A project article's sub-header carries the navigation — Back on the left, the next project on
 the right — and switching projects replays the `.article-in` fade, which

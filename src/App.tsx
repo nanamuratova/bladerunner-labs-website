@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Logo } from './components/Logo'
+import { ButtonLink } from './components/Button'
 import { ProjectDetail } from './pages/ProjectDetail'
 import { projects, services, type Project } from './data'
 import { asset } from './assets'
+import { currentProjectId, homePath, navigateOnClick, projectPath, pushPath, replacePath } from './routing'
 import { SectionLabel } from './components/SectionLabel'
 import { Contact } from './sections/Contact'
 import { Footer } from './sections/Footer'
@@ -24,25 +26,49 @@ const serviceIcons = [
 ]
 
 export default function App() {
-  const [active, setActive] = useState<Project | null>(null)
+  // The URL is the source of truth, so a project can be bookmarked and reloaded.
+  const [projectId, setProjectId] = useState<string | null>(currentProjectId)
 
   useEffect(() => {
-    window.scrollTo({ top: 0 })
-  }, [active])
+    const onPop = () => setProjectId(currentProjectId())
+    window.addEventListener('popstate', onPop)
+    return () => window.removeEventListener('popstate', onPop)
+  }, [])
+
+  const active = projectId ? (projects.find((p) => p.id === projectId) ?? null) : null
+
+  // An unknown /projects/<id> falls back to the home page rather than a blank one.
+  useEffect(() => {
+    if (projectId && !active) {
+      replacePath(homePath())
+      setProjectId(null)
+    }
+  }, [projectId, active])
+
+  useEffect(() => {
+    if (active) window.scrollTo({ top: 0 })
+  }, [active?.id])
+
+  const openProject = (p: Project) => {
+    pushPath(projectPath(p.id))
+    setProjectId(p.id)
+  }
+
+  const goHome = () => {
+    pushPath(homePath())
+    setProjectId(null)
+    // Return to the projects grid rather than the top of the page.
+    requestAnimationFrame(() => document.getElementById('projects')?.scrollIntoView())
+  }
 
   if (active) {
     const i = projects.findIndex((p) => p.id === active.id)
     const next = projects[(i + 1) % projects.length]
     return (
-      <ProjectDetail
-        project={active}
-        next={next}
-        onOpenProject={setActive}
-        onBack={() => setActive(null)}
-      />
+      <ProjectDetail project={active} next={next} onOpenProject={openProject} onBack={goHome} />
     )
   }
-  return <Home onOpenProject={setActive} />
+  return <Home onOpenProject={openProject} />
 }
 
 function Home({ onOpenProject }: { onOpenProject: (p: Project) => void }) {
@@ -199,6 +225,11 @@ function Hero() {
               We research, design and build software across applied AI, computing infrastructure and
               developer tools. Our current product work focuses on DAGRunner and AI Couture.
             </p>
+            <div className="mt-10">
+              <ButtonLink href="#projects" size="lg">
+                Explore our work
+              </ButtonLink>
+            </div>
           </div>
           <div aria-hidden="true" />
         </div>
@@ -254,9 +285,9 @@ function Projects({ onOpenProject }: { onOpenProject: (p: Project) => void }) {
               <span className="brl-mono-label text-gray-500">{p.category}</span>
               <h3 className="brl-h4 mt-3">{p.name}</h3>
               <p className="brl-body mt-4 flex-1 text-gray-600">{p.description}</p>
-              <button
-                type="button"
-                onClick={() => onOpenProject(p)}
+              <a
+                href={projectPath(p.id)}
+                onClick={navigateOnClick(() => onOpenProject(p))}
                 className="group/link mt-8 inline-flex w-fit items-center gap-1.5 font-mono text-[length:var(--type-button-size)] leading-[var(--type-button-line)] font-medium tracking-[var(--type-button-tracking)] uppercase text-accent transition-colors hover:text-accent-hover"
               >
                 Explore {p.name}
@@ -274,7 +305,7 @@ function Projects({ onOpenProject }: { onOpenProject: (p: Project) => void }) {
                 >
                   <path d="M7 17 17 7M7 7h10v10" />
                 </svg>
-              </button>
+              </a>
             </div>
           </article>
         ))}

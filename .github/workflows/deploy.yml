@@ -32,6 +32,12 @@ jobs:
         env:
           BASE_PATH: /${{ github.event.repository.name }}/
         run: npm run build
+      - name: SPA fallback
+        # Project URLs are real paths. GitHub Pages serves 404.html for anything
+        # it has no file for, so a copy of the app shell there lets
+        # /projects/<id> load and route itself. Other hosts want a catch-all
+        # rewrite to index.html instead.
+        run: cp dist/index.html dist/404.html
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

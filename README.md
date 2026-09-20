@@ -39,6 +39,18 @@ with these tokens, so a component can only reach design-system values.
 
 Changing a color or a size means changing it in `tokens.css` — every screen follows.
 
+## URLs
+
+The home page lives at the base path and each project article at
+`…/projects/<id>` — `projects/dagrunner`, `projects/ai-couture`. Links are real
+anchors, so they can be opened in a new tab, bookmarked and shared, and a reload
+lands back on the same article.
+
+Because these are paths rather than hashes, a static host has to serve the app
+shell for unknown paths. The deploy workflow copies `index.html` to `404.html`,
+which is how GitHub Pages does it; on another host, add a catch-all rewrite to
+`index.html`.
+
 ## Running it locally
 
 Node 20 or newer:
