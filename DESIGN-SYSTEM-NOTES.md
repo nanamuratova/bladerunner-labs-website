@@ -44,8 +44,9 @@ higher than they did in the export.
 
 `src/App.tsx` is the home page; `src/pages/ProjectDetail.tsx` is a project article. The contact
 section and footer live in `src/sections/`, so both pages render the same markup rather than a
-copy. A project article carries a "next project" step at its end; switching projects replays
-the `.article-in` fade, which `prefers-reduced-motion` turns off.
+copy. A project article's sub-header carries the navigation — Back on the left, the next project on
+the right — and switching projects replays the `.article-in` fade, which
+`prefers-reduced-motion` turns off.
 
 ## Rules when adding UI
 

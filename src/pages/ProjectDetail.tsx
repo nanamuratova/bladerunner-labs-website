@@ -26,13 +26,22 @@ export function ProjectDetail({
             <Logo />
           </button>
         </div>
-        <div className="mx-auto max-w-[1200px] border-b border-gray-200 px-6">
+        <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-6">
           <button
             type="button"
             onClick={onBack}
-            className="brl-mono-label flex h-12 items-center gap-2 text-gray-600 transition-colors hover:text-gray-900"
+            className="brl-mono-label group flex h-12 items-center gap-2 text-gray-600 transition-colors hover:text-gray-900"
           >
-            <span aria-hidden="true">←</span> Back
+            <span aria-hidden="true" className="transition-transform group-hover:-translate-x-0.5">←</span>
+            Back
+          </button>
+          <button
+            type="button"
+            onClick={() => onOpenProject(next)}
+            className="brl-mono-label group flex h-12 items-center gap-2 text-gray-600 transition-colors hover:text-gray-900"
+          >
+            <span className="hidden sm:inline">Next project:</span> {next.name}
+            <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">→</span>
           </button>
         </div>
       </header>
@@ -73,35 +82,6 @@ export function ProjectDetail({
               </div>
             ))}
           </div>
-        </section>
-        {/* On to the other project, without going back to the home page */}
-        <section className="border-t border-gray-200 py-16 lg:py-20">
-          <button
-            type="button"
-            onClick={() => onOpenProject(next)}
-            className="group grid w-full grid-cols-1 items-center gap-8 text-left sm:grid-cols-[200px_1fr_auto]"
-          >
-            <span className="aspect-[16/10] overflow-hidden rounded-[var(--radius-16)] bg-gray-900">
-              <img
-                src={asset(next.image)}
-                alt=""
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-              />
-            </span>
-            <span className="block">
-              <span className="brl-mono-label block text-gray-500">Next project</span>
-              <span className="brl-h3 mt-2 block transition-colors group-hover:text-accent">{next.name}</span>
-              <span className="brl-body mt-2 block text-gray-600">{next.category}</span>
-            </span>
-            <span
-              aria-hidden="true"
-              className="hidden text-gray-400 transition-all duration-200 group-hover:translate-x-1 group-hover:text-accent sm:block"
-            >
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg>
-            </span>
-          </button>
         </section>
       </main>
 
