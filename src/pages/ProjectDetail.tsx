@@ -113,7 +113,8 @@ export function ProjectDetail({
                 // workload, and the lines let them read as a set.
                 <ul className="divide-y divide-gray-200 border-t border-b border-gray-200">
                   {section.bullets.map((item) => (
-                    <li key={item} className="brl-body py-4 text-gray-600">
+                    <li key={item} className="brl-body relative py-4 pl-5 text-gray-600">
+                      <span className="absolute top-7 left-0 h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
                       {item}
                     </li>
                   ))}
