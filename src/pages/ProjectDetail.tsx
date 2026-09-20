@@ -6,6 +6,17 @@ import { asset } from '../assets'
 import { homePath, navigateOnClick, projectPath } from '../routing'
 import type { Project } from '../data'
 
+/**
+ * Status tags stay inside the palette: shipped work carries the accent, work in
+ * flight is quieter, and anything not started is plain grey.
+ */
+function statusTag(state: string) {
+  const key = state.toLowerCase()
+  if (key.startsWith('ready')) return 'bg-accent-subtle text-accent'
+  if (key.startsWith('evolving')) return 'border border-accent text-accent'
+  return 'bg-gray-100 text-gray-600'
+}
+
 /** Every article row: the heading on the left, the content on the right. */
 function ArticleRow({ heading, children }: { heading: string; children: React.ReactNode }) {
   return (
@@ -98,10 +109,11 @@ export function ProjectDetail({
                 </p>
               ))}
               {section.bullets && (
-                <ul className="flex flex-col gap-2">
+                // Ruled rows rather than bullets: the items are each a kind of
+                // workload, and the lines let them read as a set.
+                <ul className="divide-y divide-gray-200 border-t border-b border-gray-200">
                   {section.bullets.map((item) => (
-                    <li key={item} className="brl-body relative pl-5 text-gray-600">
-                      <span className="absolute top-2 left-0 h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
+                    <li key={item} className="brl-body py-4 text-gray-900">
                       {item}
                     </li>
                   ))}
@@ -124,33 +136,36 @@ export function ProjectDetail({
 
         {project.results && (
           <ArticleRow heading="Measured results">
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+            {/* Same boxed grid as the capabilities above. */}
+            <div className="grid grid-cols-1 gap-px overflow-hidden rounded-[var(--radius-16)] border border-gray-200 bg-gray-200 sm:grid-cols-2">
               {project.results.metrics.map((m) => (
-                <div key={m.label}>
+                <div key={m.label} className="bg-white p-8">
                   <p className="brl-h3 text-accent">{m.value}</p>
                   <p className="brl-body mt-2 text-gray-600">{m.label}</p>
                 </div>
               ))}
             </div>
-            <p className="brl-body-sm mt-8 text-gray-500">{project.results.note}</p>
+            <p className="brl-body-sm mt-6 text-gray-500">{project.results.note}</p>
           </ArticleRow>
         )}
 
         {project.status && (
           <ArticleRow heading="Where it stands">
-            <div className="flex flex-col gap-8">
-              {project.status.map((group) => (
-                <div key={group.state} className="grid grid-cols-1 gap-3 sm:grid-cols-[140px_1fr]">
-                  <span className="brl-mono-label pt-1 text-gray-500">{group.state}</span>
-                  <ul className="flex flex-col gap-2">
-                    {group.items.map((item) => (
-                      <li key={item} className="brl-body text-gray-900">
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+            {/* One row per item with its own status tag, as the deck presents it. */}
+            <div className="grid grid-cols-1 gap-px overflow-hidden rounded-[var(--radius-16)] border border-gray-200 bg-gray-200">
+              {project.status.flatMap((group) =>
+                group.items.map((item) => (
+                  <div
+                    key={`${group.state}-${item}`}
+                    className="grid grid-cols-1 items-center gap-2 bg-white px-6 py-5 sm:grid-cols-[160px_1fr] sm:gap-6"
+                  >
+                    <span className={`brl-mono-label w-fit rounded-full px-3 py-1 ${statusTag(group.state)}`}>
+                      {group.state}
+                    </span>
+                    <span className="brl-body text-gray-900">{item}</span>
+                  </div>
+                )),
+              )}
             </div>
           </ArticleRow>
         )}
