@@ -123,6 +123,12 @@
   /* Hero treatment — decorative blue mesh gradient and bubble shading.
      The two strongest layers are the accent at 28% and 34%; the rest are
      hero-only blues that are not part of the palette. */
+  /* Duotone hero: the render keeps its own light and shade, and a tint layer
+     recolours it into the accent — whites stay white, shadows become blue. */
+  --hero-duotone-tint: var(--accent);
+  --hero-duotone-tint-opacity: 0.4;
+  --hero-duotone-contrast: 1.12;
+  --hero-duotone-brightness: 1.12;
   --hero-gradient:
     radial-gradient(60% 65% at 78% 12%, color-mix(in srgb, var(--accent) 28%, transparent) 0%, color-mix(in srgb, var(--accent) 0%, transparent) 60%),
     radial-gradient(55% 60% at 22% 88%, color-mix(in srgb, var(--accent) 34%, transparent) 0%, color-mix(in srgb, var(--accent) 0%, transparent) 62%),
