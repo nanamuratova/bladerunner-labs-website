@@ -46,7 +46,9 @@ higher than they did in the export.
 `…/projects/<id>` through the small router in `src/routing.ts` (real paths, so articles can be
 bookmarked and shared; the deploy publishes a 404.html copy of the shell so deep links load). The contact
 section and footer live in `src/sections/`, so both pages render the same markup rather than a
-copy. A project article's sub-header carries the navigation — Back on the left, the next project on
+copy. A project article's rows alternate white and grey the way the home page separates its sections,
+counted from the end so the last row is white and never doubles up with the grey contact
+section. Its sub-header carries the navigation — Back on the left, the next project on
 the right — and switching projects replays the `.article-in` fade, which
 `prefers-reduced-motion` turns off.
 
