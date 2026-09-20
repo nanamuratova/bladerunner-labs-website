@@ -74,9 +74,6 @@ in `dist/`, and every push to `main` deploys it to the live preview above.
   at page load. Confirm the trademark use, and consider self-hosting them.
 - **Artwork** — project cards and detail pages use the supplied images. The logo is the
   client's PNG; vector artwork would be better for print and large display.
-- **Hero image** — `public/assets/hero-forms.jpg` (and the unused `hero-sweep.jpg`) are stock
-  renders. Confirm the licence before publishing, and note the original brief asked for no
-  stock imagery.
 - **Fonts** — IBM Plex Sans loads from Google Fonts; Inter and IBM Plex Mono are local files.
 - **Search visibility** — `robots.index` in `.figma/make/site.json` is `false`. Flip it when
   the site goes to its real domain.

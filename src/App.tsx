@@ -25,9 +25,6 @@ const serviceIcons = [
   asset('/assets/1be11.svg'), // Developer tools & workflows
 ]
 
-// 'sweep' is the soft light curve, 'forms' the liquid shapes.
-const HERO_IMAGE = 'forms' as 'sweep' | 'forms'
-
 export default function App() {
   // The URL is the source of truth, so a project can be bookmarked and reloaded.
   const [projectId, setProjectId] = useState<string | null>(currentProjectId)
@@ -198,15 +195,23 @@ function Header() {
 
 /* ------------------------------------------------------------------ */
 
+function HeroBubbles() {
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+      <span className="bubble animate-floatA h-[420px] w-[420px] right-[-6%] bottom-[-22%] opacity-90" />
+      <span className="bubble animate-floatB h-[300px] w-[300px] right-[12%] top-[-14%] opacity-80" />
+      <span className="bubble animate-floatC h-[110px] w-[110px] right-[26%] top-[16%]" />
+      <span className="bubble animate-floatA h-16 w-16 right-[40%] bottom-[16%] opacity-90" />
+      <span className="bubble animate-floatC h-[180px] w-[180px] left-[-5%] bottom-[8%] opacity-70" />
+      <span className="bubble animate-floatB h-10 w-10 left-[8%] top-[22%] opacity-80" />
+    </div>
+  )
+}
+
 function Hero() {
   return (
-    <section id="top" className="hero-duotone relative overflow-hidden">
-      <div
-        className="hero-duotone__image"
-        style={{ backgroundImage: `url(${asset(`/assets/hero-${HERO_IMAGE}.jpg`)})` }}
-        aria-hidden="true"
-      />
-      <div className="hero-duotone__tint" aria-hidden="true" />
+    <section id="top" className="hero-bg relative overflow-hidden">
+      <HeroBubbles />
       <div className="relative mx-auto max-w-[1200px] px-6">
         <div className="grid grid-cols-1 gap-12 py-24 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:py-36">
           <div className="flex flex-col justify-center">

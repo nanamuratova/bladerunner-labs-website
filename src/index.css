@@ -106,31 +106,6 @@ body {
 * { scrollbar-width: none; }
 *::-webkit-scrollbar { width: 0; height: 0; }
 
-/* Hero: a grayscale render, recoloured. The image keeps its own shading; the
-   tint above it contributes only hue and saturation (`color` blend), so the
-   highlights stay white and the shadows turn blue instead of grey. */
-.hero-duotone { background: var(--gray-0); }
-.hero-duotone__image {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  filter: grayscale(1) contrast(var(--hero-duotone-contrast)) brightness(var(--hero-duotone-brightness));
-  animation: sweep-drift 48s ease-in-out infinite alternate;
-  will-change: transform;
-}
-.hero-duotone__tint {
-  position: absolute;
-  inset: 0;
-  background: var(--hero-duotone-tint);
-  mix-blend-mode: color;
-  opacity: var(--hero-duotone-tint-opacity);
-}
-@keyframes sweep-drift {
-  from { transform: scale(1.06) translate3d(0, 0, 0); }
-  to { transform: scale(1.14) translate3d(-2.5%, -2%, 0); }
-}
-
 /* Hero — floating bubbles. Colors live in tokens.css as the hero treatment. */
 .hero-bg { background: var(--hero-gradient); }
 .bubble {
@@ -179,5 +154,4 @@ body {
   .animate-floatC,
   .animate-marquee { animation: none; }
   .article-in { animation: none; }
-  .hero-duotone__image { animation: none; }
 }

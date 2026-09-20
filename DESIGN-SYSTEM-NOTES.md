@@ -17,14 +17,10 @@ uppercase IBM Plex Mono with 0.06em tracking at 40/48/56px heights, and `.brl-mo
 covers the uppercase eyebrows, card categories and counters at 12/16 with 0.08em.
 The gray palette, accent, spacing and radius scales are unchanged from v0.1.
 
-The hero is a grayscale render recoloured into the palette: the image keeps its own light and
-shade, and a tint layer above it contributes hue and saturation only (`color` blend), so
-highlights stay white and shadows turn blue rather than grey. It is tuned by
-`--hero-duotone-tint`, `--hero-duotone-tint-opacity`, `--hero-duotone-contrast` and
-`--hero-duotone-brightness`, and drifts slowly (`sweep-drift`, off under
-`prefers-reduced-motion`). The earlier gradient-and-bubbles treatment is still in `tokens.css`
-as `--hero-gradient`, `--bubble-fill` and `--bubble-shadow`. Service icons sit on
-`--accent-subtle`. All of it is decorative — not for text, surfaces or controls.
+The hero's blue mesh gradient and bubbles, plus the 10% accent tint behind service icons, are
+recorded in `tokens.css` as `--hero-gradient`, `--bubble-fill`, `--bubble-shadow` and
+`--accent-subtle`. The mesh's two strongest layers are the accent at 28% and 34%; the rest are
+hero-only blues. All of it is decorative — not for text, surfaces or controls.
 
 ## How Tailwind is bound to the tokens
 
