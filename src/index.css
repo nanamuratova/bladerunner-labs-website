@@ -132,6 +132,14 @@ body {
 .animate-floatB { animation: floatB 17s ease-in-out infinite; }
 .animate-floatC { animation: floatC 21s ease-in-out infinite; }
 
+/* A project article fades up when it opens, so moving between projects reads as
+   a transition rather than a jump. */
+@keyframes article-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+.article-in { animation: article-in 380ms cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+
 /* Logo marquee */
 @keyframes marquee {
   from { transform: translateX(0); }
@@ -145,4 +153,5 @@ body {
   .animate-floatB,
   .animate-floatC,
   .animate-marquee { animation: none; }
+  .article-in { animation: none; }
 }

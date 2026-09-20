@@ -17,6 +17,7 @@ The BladeRunner Labs one-page site and the design system it is built from.
 | `src/App.tsx` | The one-page site: hero, about, projects, services, technology, contact |
 | `src/pages/ProjectDetail.tsx` | The DAGRunner and AI Couture detail pages |
 | `src/data.ts` | All project, service and technology content — edit copy here |
+| `src/sections/` | Contact and footer, shared by the home page and the project articles |
 | `src/design-system/` | The design system: tokens, components, fonts and its own README |
 | `public/assets/` | Project artwork, service icons and the logo set |
 | `DESIGN-SYSTEM-NOTES.md` | How the design system is wired into the app, and open items |
@@ -56,8 +57,8 @@ in `dist/`, and every push to `main` deploys it to the live preview above.
   claims on the project detail pages are newer than the approved copy draft. Confirm them.
 - **Third-party logos** — the technology strip loads brand logos from `cdn.simpleicons.org`
   at page load. Confirm the trademark use, and consider self-hosting them.
-- **Artwork** — the project cards use supplied images; the hero column and the detail pages
-  still show neutral placeholders.
+- **Artwork** — project cards and detail pages use the supplied images. The logo is the
+  client's PNG; vector artwork would be better for print and large display.
 - **Fonts** — IBM Plex Sans loads from Google Fonts; Inter and IBM Plex Mono are local files.
 - **Search visibility** — `robots.index` in `.figma/make/site.json` is `false`. Flip it when
   the site goes to its real domain.

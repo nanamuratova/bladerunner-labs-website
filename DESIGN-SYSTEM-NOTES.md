@@ -40,6 +40,13 @@ Note the gray scale numbering: the Figma file's `gray-50` is `#F1F1F1`, which is
 in this system. The JSX uses design-system names, so the same hex values now read one step
 higher than they did in the export.
 
+## Page structure
+
+`src/App.tsx` is the home page; `src/pages/ProjectDetail.tsx` is a project article. The contact
+section and footer live in `src/sections/`, so both pages render the same markup rather than a
+copy. A project article carries a "next project" step at its end; switching projects replays
+the `.article-in` fade, which `prefers-reduced-motion` turns off.
+
 ## Rules when adding UI
 
 - Headings use `brl-h1`…`brl-h6`; body text uses `brl-body-lg`, `brl-body`, `brl-body-sm`,
@@ -67,11 +74,13 @@ higher than they did in the export.
   scroll affordance, which some people rely on — worth a second look.
 - **New copy** not in the approved draft: phone number, `jobs@bladerunner.io`, Tel Aviv,
   LinkedIn, and the project-detail overview and capability claims. Confirm before publishing.
-- **Artwork**: the two project cards use the supplied images (`public/assets/product-1.png`,
-  `product-2.png`). The hero visual column and the project detail pages still use placeholders.
-- **Logo** artwork lives in `public/assets/logo/` as `lockup.svg`, `wordmark.svg`, `mark.svg`
-  and `stacked.svg`, with `mark.svg` also serving as the favicon. `Logo.tsx` takes a `variant`
-  prop; on a dark surface pass `onDark`, which knocks the whole mark out to white.
+- **Artwork**: the project cards and the detail pages both use the supplied images
+  (`public/assets/product-1.png`, `product-2.png`). No placeholders remain — the hero's right
+  column is empty by design, as in the Figma file.
+- **Logo**: the header and favicon use the client's own artwork in `public/assets/logo/`
+  (`brand-wordmark.png`, `brand-mark.png`), with their originals kept in `logo/source/`. Ask
+  the client for vector artwork and a transparent symbol; the redrawn SVGs that shipped before
+  had the wrong proportions. `lockup.svg` / `wordmark.svg` are the Figma redraws, unused.
 - `robots.index` is `false` in `.figma/make/site.json`; the site is noindex until you flip it.
 - The earlier static prototype in `../BladeRunner-Labs-Prototype/` is superseded by this app,
   and still carries the v0.1 design system.
